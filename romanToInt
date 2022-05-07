@@ -1,0 +1,37 @@
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        map = {
+            "I": 1,
+            "V": 5,
+            "X": 10,
+            "L": 50,
+            "C": 100,
+            "D": 500,
+            "M": 1000,
+            "IV": 4,
+            "IX": 9,
+            "XL": 40,
+            "XC": 90,
+            "CD": 400,
+            "CM": 900
+            
+        }
+        potential_pairs = ["I", "X", "C"]
+        pairs = ["IV", "IX", "XL", "XC", "CD", "CM"]
+        
+        total = 0
+        skip = False
+        
+        for index, symbol in enumerate(s):
+            if skip:
+                skip = False
+                continue
+
+            if index + 1 < len(s) and symbol in potential_pairs and symbol + s[index + 1] in pairs:
+                symbol += s[index + 1]                
+                skip = True
+
+        
+            total += map[symbol]
+        
+        return total
