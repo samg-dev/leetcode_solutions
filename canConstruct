@@ -1,0 +1,25 @@
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        
+        #for char in ransomNote:
+        #    find = magazine.find(char)
+        #    if find == -1:
+        #        return False
+        #    else:
+        #        magazine =  magazine[:find] + magazine[find+1:]
+        #return True
+        
+        freq_dict = {}
+        for char_mag in magazine:
+            if char_mag in freq_dict:
+                freq_dict[char_mag] += 1
+            else:
+                freq_dict[char_mag] = 1
+        
+        for char_ran in ransomNote:
+            if char_ran not in freq_dict or freq_dict[char_ran] == 0:
+                return False
+            else:
+                freq_dict[char_ran] -= 1
+        return True
+        
