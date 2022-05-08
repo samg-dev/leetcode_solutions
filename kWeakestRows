@@ -1,0 +1,8 @@
+class Solution:
+    def kWeakestRows(self, mat: List[List[int]], k: int) -> List[int]:
+        weakest_rows = []
+        for index, row in enumerate(mat):
+            weakest_rows.append({"count": row.count(1), "length": len(row), "index": index})
+                            
+        return [x["index"] for x in sorted(weakest_rows, key = lambda i: (i["count"], i["length"]))][:k]
+            
