@@ -1,0 +1,9 @@
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        store = {}
+        for index, i in enumerate(nums):
+            needed_num = target - i
+            if needed_num not in store:
+                store[i]=index
+            else:
+                return [store[needed_num],index] 
